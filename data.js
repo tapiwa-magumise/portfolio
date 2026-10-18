@@ -179,11 +179,11 @@
         ['sp-alarm', 'sp-sns', { step: 6, label: 'Email someone' }]
       ] },
 
-    'f-site': { label: 'How this site is built', sub: 'Built · not yet published', w: 1300, h: 720,
+    'f-site': { label: 'How this site is built', sub: 'Published on GitHub Pages', w: 1300, h: 720,
       note: 'Plain JavaScript and SVG, no framework and no build step: about 1,000 lines draw, page and search everything. The console pages come from each project\'s own README and docs.',
       groups: [
         { id: 'laptop', type: 'corp', label: 'Laptop · content build', x: 10, y: 10, w: 460, h: 440 },
-        { id: 'github', type: 'corp', label: 'GitHub · at launch', x: 500, y: 10, w: 270, h: 440 },
+        { id: 'github', type: 'corp', label: 'GitHub', x: 500, y: 10, w: 270, h: 440 },
         { id: 'browser', type: 'generic', label: 'The visitor\'s browser', x: 800, y: 10, w: 490, h: 440 },
         { id: 'later', type: 'generic', label: 'Planned · after AWS account verification', x: 500, y: 490, w: 790, h: 220 }
       ],
