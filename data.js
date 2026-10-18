@@ -21,7 +21,7 @@
     'an-code': { label: 'Claude Code in Action', sub: 'Anthropic', icon: 'cert', tint: 'data' },
 
     // One AWS account per area, as a landing zone separates workloads
-    'acct-profile':     { kind: 'account', label: 'Profile', note: 'Who I am, my CV and how to reach me. The CV and email are also in the title block.', children: ['about', 'cv', 'contact', 'site'] },
+    'acct-profile':     { kind: 'account', label: 'Profile', note: 'Who I am, my CV and how to reach me. The CV and email are also in the title block.', children: ['about', 'cv', 'contact', 'site', 'prototype'] },
     'acct-foundations': { kind: 'account', label: 'Foundations and security', note: 'Setting AWS accounts up safely, moving systems onto AWS, and checking them for risk and waste.', children: ['landing-zone', 'hybrid-dr', 'security-review'] },
     'acct-data':        { kind: 'account', label: 'Data', note: 'Pipelines that turn raw files and logs into numbers a business can act on.', children: ['sales-pipeline', 'edge-analytics', 'retail-analytics'] },
     'acct-apps':        { kind: 'account', label: 'Applications', note: 'Backends that handle money and orders without losing or double-counting anything.', children: ['invoicing-api', 'event-orders'] },
@@ -31,6 +31,7 @@
     about:   { label: 'About', sub: 'Who I am', icon: 'identity', tint: 'security' },
     cv:      { label: 'CV', sub: 'S3 object · PDF', icon: 'bucket', tint: 'storage' },
     contact: { label: 'Contact', sub: 'SNS topic · email', icon: 'message', tint: 'message' },
+    prototype: { label: 'First version', sub: 'macOS desktop · one file', icon: 'monitor', tint: 'compute', tags: ['JavaScript', 'Terraform', 'CloudFront', 'S3', 'IAM', 'GitHub Pages', 'GitHub Actions'], children: ['f-proto'] },
     site:    { label: 'This site', sub: 'SVG · plain JavaScript', icon: 'code', tint: 'compute', tags: ['JavaScript', 'SVG', 'Python', 'GitHub Pages'], children: ['f-site'] },
 
     'landing-zone':    { label: 'Landing Zone', sub: 'Organizations · SCPs', icon: 'org', tint: 'security', tags: ['Organizations', 'IAM Identity Center', 'CloudTrail', 'S3', 'GuardDuty', 'Security Hub', 'IAM Access Analyzer', 'Budgets', 'IAM', 'Terraform', 'GitHub Actions'], children: ['f-lz'] },
@@ -177,6 +178,30 @@
         ['sp-ath', 'sp-cat', { label: 'Schema' }],
         ['sp-dlq', 'sp-alarm', { label: 'Depth', dash: true }],
         ['sp-alarm', 'sp-sns', { step: 6, label: 'Email someone' }]
+      ] },
+
+    'f-proto': { label: 'Desktop prototype', sub: 'Live on GitHub Pages · AWS version written, not applied', w: 1200, h: 560,
+      note: 'The first version: a macOS desktop in one index.html, with no framework or build step. Its AWS hosting is written in Terraform and waits on account verification.',
+      groups: [
+        { id: 'gh', type: 'corp', label: 'GitHub', x: 230, y: 10, w: 330, h: 380 },
+        { id: 'aws', type: 'generic', label: 'AWS Cloud · in Terraform, not applied', x: 600, y: 10, w: 590, h: 540 }
+      ],
+      items: {
+        'pr-users':   ['Visitors', 'Browser', 'person', 'external', 100, 300, 'res'],
+        'pr-actions': ['GitHub Actions', 'pages.yml · deploy.yml', 'flow', 'management', 395, 110, 'svc'],
+        'pr-pages':   ['GitHub Pages', 'Live now', 'edge', 'networking', 395, 300, 'svc'],
+        'pr-role':    ['Deploy role', 'OIDC · main branch only', 'identity', 'security', 760, 110, 'res'],
+        'pr-cf':      ['CloudFront', 'Managed security headers', 'edge', 'networking', 760, 390, 'svc'],
+        'pr-s3':      ['Site bucket', 'Private · encrypted', 'bucket', 'storage', 1060, 390, 'res']
+      },
+      lines: [
+        ['pr-users', 'pr-pages', { step: 1, label: 'HTTPS' }],
+        ['pr-actions', 'pr-pages', { step: 2, label: 'Publish' }],
+        ['pr-users', 'pr-cf', { label: 'Planned', dash: true, pts: [[100, 505], [760, 505]] }],
+        ['pr-cf', 'pr-s3', { label: 'Origin access control', dash: true }],
+        ['pr-actions', 'pr-role', { label: 'OIDC', dash: true }],
+        ['pr-role', 'pr-s3', { label: 'Upload', dash: true, pts: [[1060, 110]] }],
+        ['pr-role', 'pr-cf', { label: 'Clear cache', dash: true }]
       ] },
 
     'f-site': { label: 'How this site is built', sub: 'Published on GitHub Pages', w: 1300, h: 720,

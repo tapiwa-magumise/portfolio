@@ -18,7 +18,9 @@
     'retail-analytics': ['eu-west-2, and a laptop', 'DuckDB, Python, Power BI'],
     'invoicing-api':    ['Local only', 'Docker Compose'],
     'event-orders':     ['Local only', 'kind, Helm'],
-    'rag-assistant':    ['eu-west-2, and a laptop', 'Terraform, Docker']
+    'rag-assistant':    ['eu-west-2, and a laptop', 'Terraform, Docker'],
+    'site':             ['Global, on GitHub Pages', 'JavaScript and SVG, Python, Playwright'],
+    'prototype':        ['Global, on GitHub Pages', 'HTML and JavaScript, Terraform for the AWS version']
   };
   var CATS = { analytics: 'Analytics', storage: 'Storage', compute: 'Compute', database: 'Database', integration: 'Application integration',
     security: 'Security', networking: 'Networking', management: 'Management', ml: 'Machine learning', external: 'Outside AWS' };

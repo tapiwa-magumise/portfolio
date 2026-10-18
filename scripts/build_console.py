@@ -20,11 +20,18 @@ PROJECTS = {
     'invoicing-api':    ('invoicing-api', 'invoicing-api', 'docs/decisions.md', 'info', 'Runs locally'),
     'event-orders':     ('event-driven-orders', 'event-driven-orders', 'docs/decisions.md', 'info', 'Runs locally'),
     'rag-assistant':    ('governed-rag-assistant', 'governed-rag-assistant', 'docs/02-decisions.md', 'warning', 'Built · evaluation waiting on AWS'),
+    'site':             ('portfolio-v2', 'portfolio', 'docs/decisions.md', 'success', 'Live on GitHub Pages'),
+    'prototype':        ('portfolio', 'prototype-portfolio', 'README.md#Decisions and what they cost', 'info', 'Live on GitHub Pages · AWS version not applied'),
+}
+# The two portfolio sites are drawn by the site itself, so their editable source is the drawing's data
+ARCH_SOURCE = {
+    'site': f'https://github.com/{OWNER}/portfolio/blob/main/data.js',
+    'prototype': f'https://github.com/{OWNER}/portfolio/blob/main/data.js',
 }
 RESULTS = ['Measured results', 'Results', 'What it found', "What's measured", 'What it checks', 'Testing', 'Tests']
 HOW = ['How it works', 'How a payment works', 'How an order flows', 'How an answer is made', 'Structure', 'Architecture']
 PROBLEM = ['The problem it solves']
-FILES = ["What's in the repository", 'Repository', 'Repository layout', 'Stacks']
+FILES = ["What's in the repository", 'Repository', 'Repository layout', 'Stacks', 'Layout']
 
 
 def inline(s, repo, base):
@@ -131,8 +138,9 @@ for pid, (folder, repo, dec, kind, status) in PROJECTS.items():
     fn, files = first(parts, FILES)
     un, run = first(parts, ['Running it', 'Try it', 'Deploying', 'Deploy'])
     status_sec = parts.get('Status', '')
-    decisions = open(os.path.join(d, dec)).read()
-    decisions = re.sub(r'^# .*\n', '', decisions)
+    dec_file, _, dec_section = dec.partition('#')
+    decisions = open(os.path.join(d, dec_file)).read()
+    decisions = sections(decisions)[dec_section] if dec_section else re.sub(r'^# .*\n', '', decisions)
     overview = md(intro, repo)
     if status_sec.strip():
         overview += '<h3>Status</h3>' + md(status_sec, repo)
@@ -151,13 +159,13 @@ for pid, (folder, repo, dec, kind, status) in PROJECTS.items():
         'overview': overview,
         'results': md(res, repo) if res else '',
         'resultsTitle': rn or '',
-        'decisions': md(decisions, repo, os.path.dirname(dec)),
-        'decisionsDoc': f'https://github.com/{OWNER}/{repo}/blob/main/{dec}',
+        'decisions': md(decisions, repo, os.path.dirname(dec_file)),
+        'decisionsDoc': f'https://github.com/{OWNER}/{repo}/blob/main/{dec_file}' + ('#' + dec_section.lower().replace(' ', '-') if dec_section else ''),
         'files': md(files, repo) if files else '',
         'run': md(run, repo) if run else '',
         'runTitle': un or '',
         'arch': f'assets/arch/{pid}.png',
-        'archSource': f'https://github.com/{OWNER}/{repo}/blob/main/docs/architecture.drawio',
+        'archSource': ARCH_SOURCE.get(pid, f'https://github.com/{OWNER}/{repo}/blob/main/docs/architecture.drawio'),
     }
 
 with open(os.path.join(OUT, 'console-data.js'), 'w') as f:

@@ -148,3 +148,4 @@ body.console-open .crumbs, body.console-open .titleblock { visibility: hidden; }
   .cs-kv > div { border-left: 0 !important; padding-left: 0 !important; }
 }
 @media (prefers-reduced-motion: reduce) { .console, .console.on { transition: none; } }
+.cs-head h1:focus { outline: none; }
