@@ -1,0 +1,13 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "description": "Tapiwa Magumise's portfolio, drawn as AWS architecture. No build step: the site is the files as they are.",
+  "type": "module",
+  "scripts": {
+    "outline": "node scripts/build_outline.mjs",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.59.1"
+  }
+}
