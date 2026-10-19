@@ -133,9 +133,9 @@ body { font-family: "Archivo", system-ui, sans-serif; color: var(--graphite); }
 .pen-dot { fill: var(--graphite); }
 
 /* Components */
-.node { cursor: pointer; outline: none; }
+.node, .node .hit { cursor: pointer; outline: none; }
 .node .tile { stroke: transparent; stroke-width: 2.5; transition: stroke .15s ease; }
-.node:hover .tile, .node:focus-visible .tile { stroke: var(--graphite); }
+.node:hover .tile, .node .hit:focus-visible .tile { stroke: var(--graphite); }
 .node.here .tile { stroke: var(--badge); }
 .icon { fill: none; stroke: var(--graphite); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
 .t-name { font: 600 18px "Archivo", sans-serif; fill: var(--graphite); }

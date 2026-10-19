@@ -41,7 +41,9 @@
     if (parent) parent.appendChild(e);
     return e;
   }
+  // The space between text elements keeps words apart when the text is read as one string
   function text(parent, x, y, str, cls, anchor) {
+    parent.appendChild(document.createTextNode(' '));
     var t = el('text', { x: x, y: y, class: cls }, parent);
     if (anchor) t.setAttribute('text-anchor', anchor);
     t.textContent = str;
@@ -255,24 +257,26 @@
     return b;
   }
   function makeTile(id) {
-    var n = N[id], g = el('g', { class: 'node tint-' + n.tint, 'data-id': id, tabindex: 0, role: 'button', 'aria-label': n.label + ', ' + n.sub }, L.nodes);
-    el('rect', { class: 'tile', x: -48, y: -48, width: 96, height: 96, rx: 4 }, g);
-    el('use', { href: '#i-' + n.icon, class: 'icon', x: -24, y: -24, width: 48, height: 48 }, g);
-    text(g, 0, 76, n.label, 't-name', 'middle');
-    text(g, 0, 96, n.sub, 't-sub', 'middle');
-    var notes = n.note ? noteText(g, 0, 128, wrap(n.note, NOTE_W), 'middle') : [];
+    // The fold badge sits beside the tile's button, not inside it, so neither button contains the other
+    var n = N[id], g = el('g', { class: 'node tint-' + n.tint, 'data-id': id }, L.nodes);
+    var hit = el('g', { class: 'hit', tabindex: 0, role: 'button', 'aria-label': n.label + ', ' + n.sub + (n.note ? '. ' + n.note : '') }, g);
+    el('rect', { class: 'tile', x: -48, y: -48, width: 96, height: 96, rx: 4 }, hit);
+    el('use', { href: '#i-' + n.icon, class: 'icon', x: -24, y: -24, width: 48, height: 48 }, hit);
+    text(hit, 0, 76, n.label, 't-name', 'middle');
+    text(hit, 0, 96, n.sub, 't-sub', 'middle');
+    var notes = n.note ? noteText(hit, 0, 128, wrap(n.note, NOTE_W), 'middle') : [];
     var b = badge(g, id); b.setAttribute('transform', 'translate(46 -46)');
     return { kind: 'tile', g: g, notes: notes };
   }
   function makeAccount(id) {
     var n = N[id], g = el('g', { class: 'acct', 'data-id': id }, L.boxes);
     var outline = el('path', { class: 'acct-line' }, g);
-    var shut = el('g', { class: 'acct-shut', tabindex: 0, role: 'button', 'aria-label': n.label + ' account' }, g);
+    var shut = el('g', { class: 'acct-shut', tabindex: 0, role: 'button', 'aria-label': n.label + ', AWS account' }, g);
     el('rect', { class: 'tile tint-acct', x: 14, y: 14, width: 68, height: 68, rx: 4 }, shut);
     el('use', { href: '#i-cloud', class: 'icon', x: 24, y: 24, width: 48, height: 48 }, shut);
     text(shut, 96, 44, n.label, 't-name');
     text(shut, 96, 66, 'AWS account', 't-sub');
-    var head = el('g', { class: 'acct-head', tabindex: 0, role: 'button', 'aria-label': n.label + ' account' }, g);
+    var head = el('g', { class: 'acct-head', tabindex: 0, role: 'button', 'aria-label': n.label + ', AWS account. ' + n.note }, g);
     text(head, 16, 30, n.label, 't-box');
     text(head, 16, 52, 'AWS account', 't-sub');
     var notes = noteText(head, 16, 82, wrap(n.note, ACCT_W - 36), 'start');
@@ -296,7 +300,7 @@
     text(head, 16, 30, n.label, 't-box');
     text(head, 16, 52, 'Detail of ' + N[n.parent].label + ' · ' + n.sub, 't-sub');
     if (window.CONSOLE_PROJECTS && window.CONSOLE_PROJECTS[n.parent]) {
-      var btn = el('g', { class: 'open-btn', 'data-console': n.parent, role: 'button', tabindex: 0, 'aria-label': 'Open ' + N[n.parent].label + ' in the console', transform: 'translate(' + (f.w - 200) + ' 16)' }, head);
+      var btn = el('g', { class: 'open-btn', 'data-console': n.parent, role: 'button', tabindex: 0, 'aria-label': 'Open in console: ' + N[n.parent].label, transform: 'translate(' + (f.w - 200) + ' 16)' }, head);
       el('rect', { width: 184, height: 36, rx: 18 }, btn);
       text(btn, 92, 23, 'Open in console', 'open-t', 'middle');
     }
