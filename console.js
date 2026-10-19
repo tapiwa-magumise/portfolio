@@ -7,6 +7,7 @@
   var EMAIL = 'tapiwa.magumise96@gmail.com';
   var LINKEDIN = 'https://www.linkedin.com/in/tapiwanashe-magumise-84bbb232a/';
   var GITHUB = 'https://github.com/tapiwa-magumise';
+  var BOOKING = 'https://calendar.app.google/vH5GUxAc5wWqLAyD8';
 
   // Where each project ran and what it is built with, from its Terraform, compose files and charts
   var FACTS = {
@@ -98,10 +99,9 @@
           + (p.files ? box('Files', '<div class="cs-prose">' + p.files + '</div>') : '')
           + (p.run ? box(esc(p.runTitle), '<div class="cs-prose">' + p.run + '</div>') : '') }
     ];
-    var subject = encodeURIComponent('About ' + N[id].label);
     return {
       crumbs: crumbsFor(id), title: esc(N[id].label), info: status(p.status.kind, p.status.text),
-      actions: ext(p.repo, 'View repository', 'cs-btn') + '<a class="cs-btn primary" href="mailto:' + EMAIL + '?subject=' + subject + '">Discuss this project</a>',
+      actions: ext(p.repo, 'View repository', 'cs-btn') + ext(BOOKING, 'Discuss this project', 'cs-btn primary'),
       tabs: tabs, tab: tab || 'overview'
     };
   }
@@ -120,9 +120,9 @@
           ['Now', ext('https://paycanary.io', 'PayCanary') + ', founder, since March 2026'], ['Before', 'Paperless Integrated Solutions, cloud engineer, 2023 to 2026'], ['Code', ext(GITHUB, 'github.com/tapiwa-magumise')]])) };
   }
   function contactPage() {
-    var rows = [['Email', '<a href="mailto:' + EMAIL + '?subject=Hiring%20enquiry">' + EMAIL + '</a>' + copyBtn(EMAIL)], ['LinkedIn', ext(LINKEDIN, 'tapiwanashe-magumise')], ['GitHub', ext(GITHUB, 'tapiwa-magumise')]];
+    var rows = [['Booking', ext(BOOKING, 'Book a call')], ['Email', '<a href="mailto:' + EMAIL + '?subject=Hiring%20enquiry">' + EMAIL + '</a>' + copyBtn(EMAIL)], ['LinkedIn', ext(LINKEDIN, 'tapiwanashe-magumise')], ['GitHub', ext(GITHUB, 'tapiwa-magumise')]];
     return { crumbs: crumbsFor('contact'), title: 'Contact', info: '<span class="cs-meta">SNS topic</span>',
-      actions: '<a class="cs-btn primary" href="mailto:' + EMAIL + '?subject=Hiring%20enquiry">Send an email</a>',
+      actions: '<a class="cs-btn" href="mailto:' + EMAIL + '?subject=Hiring%20enquiry">Send an email</a>' + ext(BOOKING, 'Book a call', 'cs-btn primary'),
       body: box('Subscriptions <span class="cs-count">(' + rows.length + ')</span>', '<table class="cs-table"><thead><tr><th>Protocol</th><th>Endpoint</th><th>Status</th></tr></thead><tbody>' +
         rows.map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + status('success', 'Confirmed') + '</td></tr>'; }).join('') + '</tbody></table>') };
   }
