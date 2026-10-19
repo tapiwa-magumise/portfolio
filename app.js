@@ -189,6 +189,8 @@
     else { bx = B.x - 48; by = B.y; }
     if (Math.abs(ay - by) < 1) return 'M' + ax + ' ' + ay + 'H' + bx;
     var tx = ax + Math.min(50, (bx - ax) / 2);
+    // A tile with a note under it turns down beyond the note, so the line does not cross the writing
+    if (N[a].note) tx = Math.min(Math.max(tx, A.x + NOTE_W / 2 + 20), bx - 30);
     return 'M' + ax + ' ' + ay + 'H' + tx + 'V' + by + 'H' + bx;
   }
   // Lines inside an AWS-style detail: from the edge of one part to the edge of the next, through any bends
