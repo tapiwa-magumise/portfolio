@@ -23,6 +23,7 @@
     'site':             ['Global, on GitHub Pages', 'JavaScript and SVG, Python, Playwright'],
     'prototype':        ['Global, on GitHub Pages', 'HTML and JavaScript, Terraform for the AWS version']
   };
+  var HOME_REGION = 'Africa (Cape Town) af-south-1', HOME_PAGES = ['about', 'cv', 'contact'];
   var CATS = { analytics: 'Analytics', storage: 'Storage', compute: 'Compute', database: 'Database', integration: 'Application integration',
     security: 'Security', networking: 'Networking', management: 'Management', ml: 'Machine learning', external: 'Outside AWS' };
   var CERTS = {
@@ -58,7 +59,7 @@
       ] }
   };
 
-  var el = document.getElementById('console'), body = el.querySelector('.cs-body'), crumbsEl = el.querySelector('.cs-crumbs');
+  var el = document.getElementById('console'), body = el.querySelector('.cs-body'), crumbsEl = el.querySelector('.cs-crumbs'), regionEl = el.querySelector('.cs-region');
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var ext = function (href, label, cls) { return '<a class="' + (cls || '') + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + label + '</a>'; };
 
@@ -174,6 +175,10 @@
     if (opening) opener = document.activeElement;
     var owner = N[id].kind === 'comp' ? N[N[id].parent].parent : null, pid = owner && P[owner] ? owner : id;
     state = { id: pid, tab: pg.tab, sel: sel || (pid !== id ? id : null) };
+    // The region badge shows where a project ran; the profile pages show the AWS region nearest home
+    var region = FACTS[pid] ? FACTS[pid][0] : HOME_PAGES.indexOf(pid) >= 0 ? HOME_REGION : '';
+    regionEl.textContent = region;
+    regionEl.hidden = !region;
     render(pg);
     el.classList.add('on'); el.setAttribute('aria-hidden', 'false'); document.body.classList.add('console-open');
     if (!fromHistory) history.pushState({ console: state }, '', '#console/' + pid + (state.tab && P[pid] ? '/' + state.tab : ''));

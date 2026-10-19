@@ -3,7 +3,7 @@
 (function () {
   var N = {
     you:  { label: 'You', sub: 'Visitor', icon: 'person', tint: 'person', children: ['edge'] },
-    edge: { label: 'Start here', sub: 'Route 53 · CloudFront', icon: 'edge', tint: 'edge', children: ['org', 'certs'],
+    edge: { label: 'Start here', sub: 'GitHub Pages', icon: 'edge', tint: 'edge', children: ['org', 'certs'],
       note: 'My portfolio, drawn as AWS architecture. Each area of my work is its own AWS account. Open one to see its projects, then open a project to see how it is built.' },
     org:  { label: 'AWS Organization', sub: 'One account per area', icon: 'org', tint: 'security',
       children: ['acct-profile', 'acct-foundations', 'acct-data', 'acct-apps', 'acct-ai', 'acct-experience'] },
