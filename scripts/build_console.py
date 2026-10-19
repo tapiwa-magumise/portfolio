@@ -13,13 +13,13 @@ OWNER = 'tapiwa-magumise'
 PROJECTS = {
     'landing-zone':     ('aws-landing-zone', 'aws-landing-zone', 'docs/decisions.md', 'info', 'Tested with mocks, not applied'),
     'hybrid-dr':        ('aws-hybrid-migration-dr', 'aws-hybrid-migration-dr', 'docs/decisions.md', 'stopped', 'Run, then destroyed'),
-    'security-review':  ('aws-security-cost-review', 'aws-security-cost-review', 'docs/02-decisions.md', 'warning', 'Run · summary waiting on AWS'),
-    'sales-pipeline':   ('aws-serverless-sales-pipeline', 'aws-serverless-sales-pipeline', 'docs/decisions.md', 'warning', 'Deploys paused · waiting on AWS'),
+    'security-review':  ('aws-security-cost-review', 'aws-security-cost-review', 'docs/02-decisions.md', 'info', 'Built and run'),
+    'sales-pipeline':   ('aws-serverless-sales-pipeline', 'aws-serverless-sales-pipeline', 'docs/decisions.md', 'info', 'Built and deployed'),
     'edge-analytics':   ('edge-analytics-platform', 'aws-edge-analytics', 'docs/02-options-and-decisions.md', 'stopped', 'Built, then destroyed'),
     'retail-analytics': ('retail-analysis-case-study', 'retail-analysis-case-study', 'docs/02-decisions.md', 'success', 'Complete'),
     'invoicing-api':    ('invoicing-api', 'invoicing-api', 'docs/decisions.md', 'info', 'Runs locally'),
     'event-orders':     ('event-driven-orders', 'event-driven-orders', 'docs/decisions.md', 'info', 'Runs locally'),
-    'rag-assistant':    ('governed-rag-assistant', 'governed-rag-assistant', 'docs/02-decisions.md', 'warning', 'Built · evaluation waiting on AWS'),
+    'rag-assistant':    ('governed-rag-assistant', 'governed-rag-assistant', 'docs/02-decisions.md', 'info', 'Built · evaluation to run'),
     'site':             ('portfolio-v2', 'portfolio', 'docs/decisions.md', 'success', 'Live on GitHub Pages'),
     'prototype':        ('portfolio', 'prototype-portfolio', 'README.md#Decisions and what they cost', 'info', 'Live on GitHub Pages · AWS version not applied'),
 }

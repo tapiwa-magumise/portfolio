@@ -140,7 +140,7 @@
         'rv-report': ['Report', 'Findings with fixes', 'receipt', 'external', 120, 400, 'res'],
         'rv-role':   ['Read-only role', 'SecurityAudit policy', 'lock', 'security', 760, 165, 'svc'],
         'rv-live':   ['Live resources', 'IAM · RDS · Lambda · more', 'cloud', 'management', 760, 335, 'res'],
-        'rv-model':  ['Bedrock · Nova Lite', 'Summary · waiting on AWS', 'spark', 'ml', 1030, 470, 'svc']
+        'rv-model':  ['Bedrock · Nova Lite', 'Model-written summary', 'spark', 'ml', 1030, 470, 'svc']
       },
       lines: [
         ['rv-tf', 'rv-agent', { step: 1, label: 'Read', pts: [[360, 150]] }],
@@ -181,7 +181,7 @@
       ] },
 
     'f-proto': { label: 'Desktop prototype', sub: 'Live on GitHub Pages · AWS version written, not applied', w: 1200, h: 560,
-      note: 'The first version: a macOS desktop in one index.html, with no framework or build step. Its AWS hosting is written in Terraform and waits on account verification.',
+      note: 'The first version: a macOS desktop in one index.html, with no framework or build step. Its AWS hosting is written in Terraform and not yet applied.',
       groups: [
         { id: 'gh', type: 'corp', label: 'GitHub', x: 230, y: 10, w: 330, h: 380 },
         { id: 'aws', type: 'generic', label: 'AWS Cloud · in Terraform, not applied', x: 600, y: 10, w: 590, h: 540 }
@@ -210,7 +210,7 @@
         { id: 'laptop', type: 'corp', label: 'Laptop · content build', x: 10, y: 10, w: 460, h: 440 },
         { id: 'github', type: 'corp', label: 'GitHub', x: 500, y: 10, w: 270, h: 440 },
         { id: 'browser', type: 'generic', label: 'The visitor\'s browser', x: 800, y: 10, w: 490, h: 440 },
-        { id: 'later', type: 'generic', label: 'Planned · after AWS account verification', x: 500, y: 490, w: 790, h: 220 }
+        { id: 'later', type: 'generic', label: 'Planned', x: 500, y: 490, w: 790, h: 220 }
       ],
       items: {
         'st-repos':  ['Nine project repos', 'READMEs · docs · diagrams', 'folder', 'external', 120, 110, 'res'],

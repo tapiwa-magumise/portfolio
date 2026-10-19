@@ -46,7 +46,7 @@ Cost: a tag list can't include a service the project only mentions.
 
 ## GitHub Pages now, CloudFront later
 
-The AWS account is waiting on verification before it can create CloudFront distributions, so the site is on GitHub Pages, deployed by CI only after the tests pass. The "This site" detail draws the CloudFront move as planned, with a dashed line, rather than claiming it.
+The site is on GitHub Pages for now, deployed by CI only after the tests pass. The "This site" detail draws the CloudFront move as planned, with a dashed line, rather than claiming it.
 
 Cost: no access logs to feed the Edge Analytics pipeline until the move.
 

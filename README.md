@@ -8,7 +8,7 @@ My portfolio, drawn as AWS architecture: [tapiwa-magumise.github.io/portfolio](h
 
 ## Status
 
-Live on GitHub Pages, published by CI after the browser tests pass. The move to CloudFront in front of a private S3 bucket waits on AWS account verification; the Terraform for that is in the [first version's repository](https://github.com/tapiwa-magumise/prototype-portfolio).
+Live on GitHub Pages, published by CI after the browser tests pass. The move to CloudFront in front of a private S3 bucket is planned; the Terraform for that is in the [first version's repository](https://github.com/tapiwa-magumise/prototype-portfolio).
 
 ## The problem it solves
 
